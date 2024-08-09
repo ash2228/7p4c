@@ -107,3 +107,11 @@ body{
 .floating{
     animation: floating 2s infinite alternate ease-in-out;
 }
+.image-bg{
+    background-image: url("https://wallpapersmug.com/large/4d7d03/light-colors-geometric-pattern-abstract.jpg");
+    background-clip: text;
+    background-position: center;
+    background-size:cover ;
+    color: transparent;
+    -webkit-background-clip: text;
+}
