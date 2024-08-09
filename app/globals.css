@@ -96,3 +96,14 @@ body{
     }
     
 }
+@keyframes floating{
+    from{
+        transform: translateY(0) rotate(40deg);
+    }
+    to{
+        transform: translateY(20px) rotate(40deg);
+    }
+}
+.floating{
+    animation: floating 2s infinite alternate ease-in-out;
+}

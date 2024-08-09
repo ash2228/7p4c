@@ -20,6 +20,7 @@ export default function Home(){
     },[10])
   },[])
   return(<>
+  <div className={`absolute h-[100vh] w-[100vw] backdrop-blur-sm ${nav?"block":"hidden"}`}></div>
   <div className={`list-none bg-[#F1EDEB] fixed w-full h-full flex ${nav!=null?nav?"navin":"navout":"hidden"} xl:pl-20 pl-6 flex-col justify-center gap-5 text-7xl`} style={serif.style}>
       <li className={`${nav!=null?nav?"first":"opacity-0 transition":"hidden"}`}>Index</li>
       <li className={`${nav!=null?nav?"second":"opacity-0 transition":"hidden"}`}>Journey</li>
@@ -40,6 +41,7 @@ export default function Home(){
   <div className={`pt-20 px-5 text-white ${font.className} xl:ml-10 xl:pt-40`}>
   <h1 className="mt-10 text-7xl">7 Pistons for change</h1>
   <h1 className="mt-5 xl:w-[50%]">{para}</h1>
+  <img src="dna.png" alt="" className="xl:h-60 floating xl:right-20 rotate-45 xl:top-52 absolute -z-30 h-40 top-72 blur-sm xl:blur-0" />
   </div>
   </>)
 }
