@@ -1,33 +1,98 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+body{
+    background-color: #0A1738;
 }
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+@keyframes navin {
+    0%{
+        transform: translateX(100vw);
+        display: flex;
+        border-radius: 100%;
+    }
+    40%{
+        transform: translateX(90vw);
+        border-radius: 100%;
+    }
+    100%{
+        transform: translateX(0vw);
+    }
 }
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@keyframes navout {
+    0%{
+        transform: translateX(0vw);
+    }
+    40%{
+        transform: translateX(10vw);
+        border-radius: 10%;
+    }
+    100%{
+        transform: translateX(100vw);
+        border-radius: 90%;
+    }
 }
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+@keyframes textin{
+    0%{
+        transform: translateX(100vw);
+        opacity: 0%;
+    }
+    60%{
+        opacity: 0%;
+    }
+    
+}
+.navin{
+    animation: navin ease-in-out 1s;
+    display: flex;
+}
+.navout{
+    animation: navout ease-in-out 1s forwards;
+}
+.first{
+    animation: textin 1s;
+}
+.second{
+    animation: textin 1.3s;
+}
+.third{
+    animation: textin 1.7s;
+}
+.fourth{
+    animation: textin 1.8s;
+}
+@media only screen and (min-width:1200px) {
+    @keyframes navout {
+        0%{
+            transform: translateX(60vw);
+            
+        }
+        40%{
+            transform: translateX(70vw);
+            border-radius: 10%;
+        }
+        100%{
+            border-radius: 70%;
+            transform: translateX(100vw);
+        }
+    }
+    @keyframes navin {
+        0%{
+            transform: translateX(100vw);
+            border-radius: 40%;
+        }
+        40%{
+            transform: translateX(95vw);
+            border-radius: 40%;
+        }
+        100%{
+            transform: translateX(60vw);
+        }
+    }
+    .navin{
+        animation: navin ease-in-out 1s forwards;
+    }
+    .navout{
+        animation: navout ease-in-out 1s forwards;
+    }
+    
 }
