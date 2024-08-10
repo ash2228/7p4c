@@ -23,7 +23,7 @@ export default function Home(){
     },[10])
   },[])
   return(<>
-  <div className={`absolute h-[100vh] w-[100vw] backdrop-blur-sm ${nav?"block":"hidden"}`} onClick={()=>{setNav(!nav)}}></div>
+  <div className={`fixed h-[100vh] w-[100vw] backdrop-blur-sm ${nav?"block":"hidden"}`} onClick={()=>{setNav(!nav)}}></div>
   <div className={`list-none bg-[#F1EDEB] fixed w-full h-full flex ${nav!=null?nav?"navin":"navout":"hidden"} xl:pl-20 pl-6 flex-col justify-center gap-5 text-7xl`} style={serif.style}>
       <li className={`${nav!=null?nav?"first":"opacity-0 transition":"hidden"}`}>Index</li>
       <li className={`${nav!=null?nav?"second":"opacity-0 transition":"hidden"}`}>Journey</li>
@@ -49,7 +49,7 @@ export default function Home(){
   <div className={`text-white ${serif.className} px-5 xl:ml-10`}>
   <h1 className={`text-sm image-bg`}>See below how 7p4c with its chemistry of perfection can leave you with a newborn vision, impact and wisdom to lead life.</h1>
   </div>
-  <div className="h-[100vh] w-full ">
+  <div className="h-[100vh] w-full absolute -z-10">
     <Canvas camera={{position:[0,0,20]}}>
       <Sphere/>
       <OrbitControls enablePan={false} enableZoom={false}/>
