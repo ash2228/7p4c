@@ -1,12 +1,15 @@
 "use client"
+import * as THREE from "three"
 import { Canvas,extend, useFrame } from "@react-three/fiber"
 import { EffectComposer,Bloom,Glitch,ChromaticAberration } from "@react-three/postprocessing"
 import {Vector2, Raycaster,Vector3, Camera} from "three"
 import { Loader, Text } from "@react-three/drei"
 import { useThree } from "@react-three/fiber"
 import { useEffect, useState,Suspense } from "react";
+import {particlesCursor} from 'threejs-toys';
 import Loading from "./loadingscreen"
 export default function Page(){
+	
 	const [z,setZ] = useState(30);
 	const [y,setY] = useState(0);
 	const [x,setX] = useState(-15);
@@ -22,7 +25,7 @@ export default function Page(){
 		
 	},[])
     return(<>
-    <div className="h-[100vh] w-full bg-black">
+    <div className="h-[100vh] w-full bg-black cursor-none">
 		<Canvas camera={{position:[0,0,z],fov:50}}>
 			<Suspense fallback={null}>
 
@@ -40,6 +43,7 @@ export default function Page(){
 		  <CameraController/>
 		  <Loader/>
 			</Suspense>
+			<Cursor/>
 		</Canvas>
 		<div className="flex">
 			<div className="h-[400px] w-[350px] bg-white">
@@ -82,6 +86,43 @@ function Effects(){
           />
 		</EffectComposer>
 	)
+}
+function Cursor() {
+    let { camera, scene } = useThree();
+    let [mousePos, setMousePos] = useState(new Vector3(0, 0, 0));
+
+    useEffect(() => {
+        const handleMouseMove = (event) => {
+            const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+            const mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+            const mouse = new Vector2(mouseX, mouseY);
+
+            // Create a ray from the camera through the mouse position
+            const raycaster = new THREE.Raycaster();
+            raycaster.setFromCamera(mouse, camera);
+
+            // Determine where the ray intersects the z=0 plane
+            const plane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
+            const intersection = new THREE.Vector3();
+            raycaster.ray.intersectPlane(plane, intersection);
+
+            // Update the mesh position
+            setMousePos(intersection);
+        };
+
+        window.addEventListener('mousemove', handleMouseMove);
+
+        return () => {
+            window.removeEventListener('mousemove', handleMouseMove);
+        };
+    }, [camera]);
+
+    return (
+        <mesh position={mousePos.toArray()}>
+            <sphereGeometry args={[1,8,8]}/>
+            <meshBasicMaterial />
+        </mesh>
+    );
 }
 function CameraController(){
 	let {camera} = useThree();
