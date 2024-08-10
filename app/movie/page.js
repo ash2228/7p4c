@@ -2,9 +2,9 @@
 import { Canvas,extend, useFrame } from "@react-three/fiber"
 import { EffectComposer,Bloom,Glitch,ChromaticAberration } from "@react-three/postprocessing"
 import {Vector2, Raycaster,Vector3, Camera} from "three"
-import { Text } from "@react-three/drei"
+import { Loader, Text } from "@react-three/drei"
 import { useThree } from "@react-three/fiber"
-import { useEffect, useState } from "react";
+import { useEffect, useState,Suspense } from "react";
 import Loading from "./loadingscreen"
 export default function Page(){
 	const [z,setZ] = useState(30);
@@ -24,6 +24,8 @@ export default function Page(){
     return(<>
     <div className="h-[100vh] w-full bg-black">
 		<Canvas camera={{position:[0,0,z],fov:50}}>
+			<Suspense fallback={null}>
+
 			<Effects/>
 			<Text
           position={[x, y, 0]}
@@ -31,11 +33,13 @@ export default function Page(){
           color="#ffffff"
           anchorX="center"
           anchorY="middle"
-        >
+		  >
           7 Pistons Of Change
         </Text>
 		  <Sphere/>
 		  <CameraController/>
+		  <Loader/>
+			</Suspense>
 		</Canvas>
 		<div className="flex">
 			<div className="h-[400px] w-[350px] bg-white">
