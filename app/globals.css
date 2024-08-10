@@ -115,3 +115,6 @@ body{
     color: transparent;
     -webkit-background-clip: text;
 }
+body::-webkit-scrollbar {
+    display: none;
+  }
