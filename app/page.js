@@ -1,6 +1,9 @@
 "use client"
 import { useEffect, useRef, useState } from "react"
 import { Bebas_Neue,Roboto_Serif } from "next/font/google"
+import * as THREE from "three"
+import { Canvas } from "@react-three/fiber"
+import { OrbitControls } from "@react-three/drei"
 
 const font = Bebas_Neue({weight:"400",subsets:["latin"]})
 const serif = Roboto_Serif({weight:"400",subsets:["latin"]});
@@ -45,9 +48,20 @@ export default function Home(){
   </div>
   <div className={`text-white ${serif.className} px-5 xl:ml-10`}>
   <h1 className={`text-sm image-bg`}>See below how 7p4c with its chemistry of perfection can leave you with a newborn vision, impact and wisdom to lead life.</h1>
-  <div className="flex">
-
   </div>
+  <div className="h-[100vh] w-full ">
+    <Canvas camera={{position:[0,0,20]}}>
+      <Sphere/>
+      <OrbitControls enablePan={false} enableZoom={false}/>
+    </Canvas>
   </div>
   </>)
+}
+function Sphere(){
+  return(
+    <mesh>
+    <sphereGeometry args={[10, 46, 46]} />
+    <meshBasicMaterial wireframe/>
+  </mesh>
+  )
 }
