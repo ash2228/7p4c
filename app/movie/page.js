@@ -3,30 +3,44 @@ import * as THREE from "three"
 import { Canvas,extend, useFrame } from "@react-three/fiber"
 import { EffectComposer,Bloom,Glitch,ChromaticAberration } from "@react-three/postprocessing"
 import {Vector2, Raycaster,Vector3, Camera} from "three"
-import { Loader, Text } from "@react-three/drei"
+import { Loader, OrbitControls, Text } from "@react-three/drei"
 import { useThree } from "@react-three/fiber"
-import { useEffect, useState,Suspense } from "react";
-import {particlesCursor} from 'threejs-toys';
-import Loading from "./loadingscreen"
+import { useEffect, useState,Suspense, useRef } from "react";
+let i = false
 export default function Page(){
-	
 	const [z,setZ] = useState(30);
 	const [y,setY] = useState(0);
 	const [x,setX] = useState(-15);
+	const section = useRef();
+	const section1 = useRef();
+	const [s,setS] = useState(true);
+	const [enabled,setEnabled] = useState(false);
 	useEffect(()=>{
 		if(window.innerWidth<1200){
 			setZ(60);
 			setY(12);
 			setX(0);
+			setEnabled(true)
 		}
 		if(document!== undefined){
 			document.body.style.overflow = "hidden"
 		}
-		
 	},[])
+	const movementHandler = ()=>{
+		if(s){
+			setS(false);
+			section.current.scrollIntoView({behavior:"smooth"});
+			i=true;
+		}
+		else{
+			i=false;
+			setS(true);
+			section1.current.scrollIntoView({behavior:"smooth"});
+		}
+	}
     return(<>
-    <div className="h-[100vh] w-full bg-black cursor-none">
-		<Canvas camera={{position:[0,0,z],fov:50}}>
+    <div className={`h-[100vh] w-full bg-black`} ref={section1}>
+		<Canvas camera={{position:[0,0,z],fov:50}} className={`cursor-none ${!s&&"brightness-50"} transition`}>
 			<Suspense fallback={null}>
 
 			<Effects/>
@@ -43,10 +57,29 @@ export default function Page(){
 		  <CameraController/>
 		  <Loader/>
 			</Suspense>
+			<OrbitControls enablePan={false} enableZoom={false} enabled={enabled} />
 			<Cursor/>
 		</Canvas>
-		<div className="flex">
-			<div className="h-[400px] w-[350px] bg-white">
+		<div className="absolute bottom-0 backdrop-blur-sm h-[10vh] w-full cursor-pointer" ref={section}>
+			<h1 className={`text-center text-4xl text-white ${!s&&"rotate-180"} transition`} onClick={movementHandler}>v</h1>
+		</div>
+		<div className="flex gap-5 overflow-x-scroll backdrop-blur-3xl bg-[#000002] p-20">
+			<div className="h-[400px] w-[350px] bg-gradient-to-r flex-shrink-0 from-slate-950 to-gray-900 rounded-xl">
+
+			</div>
+			<div className="h-[400px] w-[350px] bg-gradient-to-r flex-shrink-0 from-slate-950 to-gray-900 rounded-xl">
+
+			</div>
+			<div className="h-[400px] w-[350px] bg-gradient-to-r flex-shrink-0 from-slate-950 to-gray-900 rounded-xl">
+
+			</div>
+			<div className="h-[400px] w-[350px] bg-gradient-to-r flex-shrink-0 from-slate-950 to-gray-900 rounded-xl">
+
+			</div>
+			<div className="h-[400px] w-[350px] bg-gradient-to-r flex-shrink-0 from-slate-950 to-gray-900 rounded-xl">
+
+			</div>
+			<div className="h-[400px] w-[350px] bg-gradient-to-r flex-shrink-0 from-slate-950 to-gray-900 rounded-xl">
 
 			</div>
 		</div>
@@ -90,9 +123,11 @@ function Effects(){
 function Cursor() {
     let { camera, scene } = useThree();
     let [mousePos, setMousePos] = useState(new Vector3(0, 0, 0));
+	const [visible,setVisible] = useState(false)
 
     useEffect(() => {
-        const handleMouseMove = (event) => {
+		const handleMouseMove = (event) => {
+			setVisible(true)
             const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
             const mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
             const mouse = new Vector2(mouseX, mouseY);
@@ -116,9 +151,8 @@ function Cursor() {
             window.removeEventListener('mousemove', handleMouseMove);
         };
     }, [camera]);
-
     return (
-        <mesh position={mousePos.toArray()}>
+        <mesh position={mousePos.toArray()} visible={visible} >
             <sphereGeometry args={[1,8,8]}/>
             <meshBasicMaterial />
         </mesh>
@@ -135,4 +169,9 @@ function CameraController(){
 			camera.lookAt(mouse.x,mouse.y)
 		})
 	},[])
+	useEffect(()=>{
+		if(i){
+			
+		}
+	},[i])
 }
