@@ -15,6 +15,9 @@ export default function Page(){
 			setY(12);
 			setX(0);
 		}
+		if(document!== undefined){
+			document.body.style.overflow = "hidden"
+		}
 		
 	},[])
     return(<>
