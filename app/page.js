@@ -2,16 +2,17 @@
 import { useEffect, useRef, useState } from "react"
 import { Bebas_Neue,Roboto_Serif } from "next/font/google"
 import * as THREE from "three"
-import { Canvas } from "@react-three/fiber"
+import { Canvas, useFrame } from "@react-three/fiber"
 import { OrbitControls } from "@react-three/drei"
+import {useRouter} from "next/navigation"
 
 const font = Bebas_Neue({weight:"400",subsets:["latin"]})
 const serif = Roboto_Serif({weight:"400",subsets:["latin"]});
+let trans = false
 export default function Home(){
   const [nav,setNav] = useState(null);
   const [para,setPara] = useState("");
-
-  const word = "It is astonishing to see how billions of atoms could bond together in perfect combinations to form a single DNA – the core of a human life. This has been the inspiration behind seven-Pitstops-For-Change (7p4c), the world's first such journey for transformation set in the backdrop of incredible India. Be ready to experience hundreds of tiny and big travel experiences in India, woven together in the perfect combination and proportion and to be experienced in the perfect environment with the perfect blend of people with unimaginably diverse backgrounds.";
+  const word = "It is astonishing to see how billions of atoms could bond together in perfect combinations to form a single DNA - the core of a human life. This has been the inspiration behind seven-Pitstops-For-Change (7p4c), the world's first such journey for transformation set in the backdrop of incredible India. Be ready to experience hundreds of tiny and big travel experiences in India, woven together in the perfect combination and proportion and to be experienced in the perfect environment with the perfect blend of people with unimaginably diverse backgrounds.";
   useEffect(()=>{
     let i = 0;
     let newword = "";
@@ -22,6 +23,8 @@ export default function Home(){
       }
     },[10])
   },[])
+  const canvasRef = useRef();
+
   return(<>
   <div className={`fixed h-[100vh] w-[100vw] backdrop-blur-sm ${nav?"block":"hidden"}`} onClick={()=>{setNav(!nav)}}></div>
   <div className={`list-none bg-[#F1EDEB] fixed w-full h-full flex ${nav!=null?nav?"navin":"navout":"hidden"} xl:pl-20 pl-6 flex-col justify-center gap-5 text-7xl`} style={serif.style}>
@@ -50,12 +53,13 @@ export default function Home(){
   <h1 className={`text-sm image-bg`}>See below how 7p4c with its chemistry of perfection can leave you with a newborn vision, impact and wisdom to lead life.</h1>
   </div>
   <div className="h-[100vh] w-full absolute -z-10 py-32 xl:py-0">
-    <Canvas camera={{position:[0,0,20]}} className="cursor-grab w-full h-full">
+    <Canvas camera={{position:[0,0,20]}} className="cursor-grab w-full h-full" ref={canvasRef}>
       <Sphere/>
       <OrbitControls enablePan={false} enableZoom={false}/>
     </Canvas>
     <div className="flex items-center justify-center xl:pb-20">
     <button
+    onClick={()=>{trans=true}}
   style={{
     WebkitBoxReflect: 'below 0px linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.4))'
   }}
@@ -153,8 +157,25 @@ xmlns="http://www.w3.org/2000/svg"
   </>)
 }
 function Sphere(){
+  const router = useRouter();
+  const sphereRef = useRef();
+  useFrame((state,delta)=>{
+    if(trans){
+      sphereRef.current.rotation.y += delta;
+      setTimeout(()=>{
+        if(sphereRef.current){
+        sphereRef.current.scale.x += delta;
+        sphereRef.current.scale.y += delta;
+        sphereRef.current.scale.z += delta;
+        }
+        router.push("/movie")
+      },1000)
+    }
+  })
+  
+
   return(
-    <mesh>
+    <mesh ref={sphereRef}>
     <sphereGeometry args={[10, 46, 46]} />
     <meshBasicMaterial wireframe/>
   </mesh>
