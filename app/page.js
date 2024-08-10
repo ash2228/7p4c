@@ -27,6 +27,7 @@ export default function Home(){
     if(document!==undefined){
       document.body.style.overflow = "auto"
     }
+    trans=false
   },1000)
   const canvasRef = useRef();
 
