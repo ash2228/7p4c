@@ -54,7 +54,7 @@ export default function Home(){
       <Sphere/>
       <OrbitControls enablePan={false} enableZoom={false}/>
     </Canvas>
-    <div className="flex items-center justify-center">
+    <div className="flex items-center justify-center xl:pb-20">
     <button
   style={{
     WebkitBoxReflect: 'below 0px linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.4))'
