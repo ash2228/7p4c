@@ -5,6 +5,7 @@ import {Vector2, Raycaster,Vector3, Camera} from "three"
 import { Text } from "@react-three/drei"
 import { useThree } from "@react-three/fiber"
 import { useEffect, useState } from "react";
+import Loading from "./loadingscreen"
 export default function Page(){
 	const [z,setZ] = useState(30);
 	const [y,setY] = useState(0);

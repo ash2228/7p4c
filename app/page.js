@@ -23,6 +23,11 @@ export default function Home(){
       }
     },[10])
   },[])
+  useEffect(()=>{
+    if(document!==undefined){
+      document.body.style.overflow = "auto"
+    }
+  },1000)
   const canvasRef = useRef();
 
   return(<>
