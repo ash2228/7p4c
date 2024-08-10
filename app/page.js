@@ -49,8 +49,8 @@ export default function Home(){
   <div className={`text-white ${serif.className} px-5 xl:ml-10`}>
   <h1 className={`text-sm image-bg`}>See below how 7p4c with its chemistry of perfection can leave you with a newborn vision, impact and wisdom to lead life.</h1>
   </div>
-  <div className="h-[100vh] w-full absolute -z-10">
-    <Canvas camera={{position:[0,0,20]}}>
+  <div className="h-[100vh] w-full absolute -z-10 py-32 xl:py-0">
+    <Canvas camera={{position:[0,0,20]}} className="cursor-grab w-full h-full">
       <Sphere/>
       <OrbitControls enablePan={false} enableZoom={false}/>
     </Canvas>
