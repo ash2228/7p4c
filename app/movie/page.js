@@ -1,8 +1,9 @@
 "use client"
 import { Canvas,extend, useFrame } from "@react-three/fiber"
 import { EffectComposer,Bloom,Glitch,ChromaticAberration } from "@react-three/postprocessing"
-import {Vector2} from "three"
+import {Vector2, Raycaster,Vector3, Camera} from "three"
 import { Text } from "@react-three/drei"
+import { useThree } from "@react-three/fiber"
 import { useEffect, useState } from "react";
 export default function Page(){
 	const [z,setZ] = useState(30);
@@ -14,9 +15,7 @@ export default function Page(){
 			setY(12);
 			setX(0);
 		}
-		if(document.body!== undefined){
-			document.body.style.overflow = "hidden";
-		}
+		
 	},[])
     return(<>
     <div className="h-[100vh] w-full bg-black">
@@ -32,6 +31,7 @@ export default function Page(){
           7 Pistons Of Change
         </Text>
 		  <Sphere/>
+		  <CameraController/>
 		</Canvas>
 		<div className="flex">
 			<div className="h-[400px] w-[350px] bg-white">
@@ -74,4 +74,16 @@ function Effects(){
           />
 		</EffectComposer>
 	)
+}
+function CameraController(){
+	let {camera} = useThree();
+	useEffect(()=>{
+		window.addEventListener("mousemove",(event)=>{
+			const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+			const mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+			camera.lookAt(2,0,5);
+			const mouse = new Vector2(mouseX, mouseY);
+			camera.lookAt(mouse.x,mouse.y)
+		})
+	},[])
 }
