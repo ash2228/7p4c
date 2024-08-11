@@ -147,9 +147,6 @@ const images = [
   <div className={`pt-20 px-5 text-white ${font.className} xl:ml-10 xl:pt-40 h-[80vh]`}>
   <h1 className="mt-10 text-7xl">7 Pistons for change</h1>
   <h1 className="mt-5 xl:w-[50%] pointer-events-none absolute -z-20">{para}</h1>
-  <div className="xl:right-10 absolute -z-30 h-[700px] xl:-top-[70px] xl:z-40 p-20 w-[500px] -top-[40px] -right-[50px] hidden xl:block">
-  
-  </div>
   </div>
   <div className={`text-white ${serif.className} px-5 xl:ml-10`}>
   <h1 className={`text-sm image-bg`}>See below how 7p4c with its chemistry of perfection can leave you with a newborn vision, impact and wisdom to lead life.</h1>
