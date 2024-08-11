@@ -16,7 +16,7 @@ export default function Home(){
   const [innerWidth,setInnerW] = useState(0);
   const [innerHeight,setInnerH] = useState(0);
   useEffect(()=>{
-    if(window!==undefined){
+    if (typeof window !== "undefined") {
       setInnerW(window.innerWidth);
       setInnerW(window.innerHeight);
     }
