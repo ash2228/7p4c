@@ -13,6 +13,14 @@ const serif = Roboto_Serif({weight:"400",subsets:["latin"]});
 let trans = false;
 
 export default function Home(){
+  const [innerWidth,setInnerW] = useState(0);
+  const [innerHeight,setInnerH] = useState(0);
+  useEffect(()=>{
+    if(window!==undefined){
+      setInnerW(window.innerWidth);
+      setInnerW(window.innerHeight);
+    }
+  },[])
   const ref1 = useRef();
 const ref2 = useRef();
 const ref3 = useRef();
@@ -269,8 +277,8 @@ xmlns="http://www.w3.org/2000/svg"
     <div className="h-[100vh] w-full flex flex-col overflow-hidden" style={font.style}>
   {images.map((item, index) => (
     <Image
-    width={window&&window.innerWidth}
-    height={window&&window.innerWidth}
+    width={innerWidth}
+    height={innerHeight}
     ref={item.ref}
       src={item.data} 
       alt="" 
