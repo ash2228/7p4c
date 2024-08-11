@@ -269,8 +269,8 @@ xmlns="http://www.w3.org/2000/svg"
     <div className="h-[100vh] w-full flex flex-col overflow-hidden" style={font.style}>
   {images.map((item, index) => (
     <Image
-    width={window.innerWidth}
-    height={window.innerHeight}
+    width={window&&window.innerWidth}
+    height={window&&window.innerWidth}
     ref={item.ref}
       src={item.data} 
       alt="" 
