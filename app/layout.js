@@ -11,6 +11,16 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+      <link rel="preload" href="chand.jpg" as="image" />
+      <link rel="preload" href="gate.jpg" as="image" />
+      <link rel="preload" href="jaipur.jpg" as="image" />
+      <link rel="preload" href="luck.jpg" as="image" />
+      <link rel="preload" href="taj.jpg" as="image" />
+      <link rel="preload" href="rishi.jpg" as="image" />
+      <link rel="preload" href="vara.jpg" as="image" />
+      </head>
+
       <body className={inter.className}>{children}</body>
     </html>
   );

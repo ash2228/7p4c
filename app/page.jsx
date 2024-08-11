@@ -6,6 +6,7 @@ import { Canvas, useFrame } from "@react-three/fiber"
 import { OrbitControls } from "@react-three/drei"
 import {useRouter} from "next/navigation"
 import Page from "./register/page"
+import Image from "next/image"
 
 const font = Bebas_Neue({weight:"400",subsets:["latin"]})
 const serif = Roboto_Serif({weight:"400",subsets:["latin"]});
@@ -21,31 +22,31 @@ const ref6 = useRef();
 const ref7 = useRef();
 const images = [
   {
-    data:"gate.jpg",
+    data:"/gate.jpg",
     ref:ref1
   },
   {
-    data:"jaipur.jpg",
+    data:"/jaipur.jpg",
     ref:ref2
   },
   {
-    data:"rishi.jpg",
+    data:"/rishi.jpg",
     ref:ref3
   },
   {
-    data:"chand.jpg",
+    data:"/chand.jpg",
     ref:ref4
   },
   {
-    data:"vara.jpg",
+    data:"/vara.jpg",
     ref:ref5
   },
   {
-    data:"luck.jpg",
+    data:"/luck.jpg",
     ref:ref6
   },
   {
-    data:"./taj.jpg",
+    data:"/taj.jpg",
     ref:ref7
   },
 ]
@@ -267,7 +268,9 @@ xmlns="http://www.w3.org/2000/svg"
     <button className="p-5 bg-black text-white left-0 absolute -mt-[100px] opacity-30 hover:opacity-100 transition-all" onClick={()=>{clickhandler(false)}}>{"<"}</button>
     <div className="h-[100vh] w-full flex flex-col overflow-hidden" style={font.style}>
   {images.map((item, index) => (
-    <img
+    <Image
+    width={window.innerWidth}
+    height={window.innerHeight}
     ref={item.ref}
       src={item.data} 
       alt="" 
