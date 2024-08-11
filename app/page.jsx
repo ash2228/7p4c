@@ -219,10 +219,10 @@ xmlns="http://www.w3.org/2000/svg"
     <div className="flex pb-10 overflow-hidden scroller">
      {data.map((items,index)=>{
       return(
-        <div className="flex-shrink-0 xl:h-[400px] xl:w-[350px] h-[300px] w-[250px] mt-20 xl:ml-10 ml-5 rounded-xl bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border-gray-100 px-3 py-2 flex flex-col text-white gap-3 overflow-y-scroll hey">
+        <div className="flex-shrink-0 xl:h-[400px] xl:w-[350px] h-[300px] w-[250px] mt-20 xl:ml-10 ml-5 rounded-xl bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border-gray-100 px-3 py-2 flex flex-col text-white gap-3 overflow-y-scroll hey" key={index}>
         <img src={items.img} className="rounded-xl w-full h-48 object-cover" alt="" />
         <h1 className={`${font.className} text-2xl`}>{items.heading}</h1>
-        <h1 key={index}>{items.body}</h1>
+        <h1>{items.body}</h1>
       </div>
       )
      })}
