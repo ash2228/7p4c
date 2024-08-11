@@ -10,6 +10,61 @@ const font = Bebas_Neue({weight:"400",subsets:["latin"]})
 const serif = Roboto_Serif({weight:"400",subsets:["latin"]});
 let trans = false
 export default function Home(){
+  useEffect(()=>{
+    canvasRef.current.addEventListener("scroll",(e)=>{
+      console.log(e)
+    })
+  },[])
+  const [i,setI] = useState(0);
+  const clickhandler = (e)=>{
+    if(document!==undefined){
+      if(e && i<data.length-1){
+        const element = document.getElementsByClassName("hey")[i];
+        const element2 = document.getElementsByClassName("hey")[i+1];
+        element2.classList.remove("this")
+        element2.classList.add("that")
+        setI(i+1);
+        element.style.position = "absolute";
+      }
+      else{
+        if(i>0){
+          const element = document.getElementsByClassName("hey")[i-1];
+          const element2 = document.getElementsByClassName("hey")[i];
+          element2.classList.remove("that")
+        element2.classList.add("this")
+        setI(i-1);
+        element.style.position = "relative";
+        }
+      }
+    }
+  }
+  const data = [
+    {
+      img:"https://e1.pxfuel.com/desktop-wallpaper/948/916/desktop-wallpaper-india-in-20-beautiful-places-to-graph-indian-tourism.jpg",
+      heading:"Why Visit India?",
+      body:"Visiting India offers a rich tapestry of experiences, from its vibrant culture and ancient history to its diverse landscapes. Whether you're exploring majestic palaces, savoring flavorful cuisine, or immersing yourself in spiritual traditions, India captivates with its contrasts and depth. From the serene beauty of the Himalayas to the bustling energy of cities like Delhi and Mumbai, India promises a journey that is both enlightening and unforgettable."
+    },
+    {
+      img:"https://images.pexels.com/photos/2477374/pexels-photo-2477374.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+      heading:"People in India",
+      body:"India is a country of remarkable diversity, home to over 1.4 billion people who belong to a wide range of cultures, languages, religions, and traditions. The population is a blend of ancient customs and modern lifestyles, with deep-rooted family values and a strong sense of community. Indians are known for their hospitality, warmth, and resilience, often welcoming visitors with open arms. The country's rich cultural heritage is reflected in its festivals, art, music, and daily life, creating a vibrant and dynamic society. Despite the challenges of such diversity, there is a shared sense of national pride and unity among the people."
+    },
+    {
+      img:"https://e2travels.com/images/theme-tours/india-culture2.jpg",
+      heading:"Indian Culture",
+      body:"Indian culture is a vibrant mosaic of traditions, beliefs, and practices that have evolved over thousands of years. It is characterized by a deep respect for family, spirituality, and community. The culture is a blend of various influences, including ancient civilizations like the Indus Valley, Vedic traditions, and the impact of Buddhism, Jainism, Islam, and Christianity."
+    },
+    {
+      img:"https://drop.ndtv.com/albums/COOKS/5-south-indian-_637964103959169367/637964103977744769.jpeg",
+      heading:"Indian Cuisines",
+      body:"Cuisine is another key aspect, with Indian food known for its bold flavors, diverse spices, and regional variations. Traditional clothing, such as sarees and turbans, is often worn, especially during festivals and ceremonies."
+    },
+    {
+      img:"https://www.fabhotels.com/blog/wp-content/uploads/2022/01/cliched-destinations-in-india-feature-image-600X400.jpg",
+      heading:"Places in India",
+      body:"India is a land of diverse and captivating destinations. From the majestic Taj Mahal in Agra to the serene backwaters of Kerala, each region offers unique experiences. Explore the vibrant streets of Jaipur, the spiritual ambiance of Varanasi, and the scenic beauty of Himachal Pradesh. Goa's beaches and nightlife provide a lively retreat, while the cultural richness of cities like Delhi and Mumbai reflects the country's dynamic heritage. India's vast landscape promises something for every traveler, blending history, nature, and modernity."
+    },
+  ]
   const [nav,setNav] = useState(null);
   const [para,setPara] = useState("");
   const word = "It is astonishing to see how billions of atoms could bond together in perfect combinations to form a single DNA - the core of a human life. This has been the inspiration behind seven-Pitstops-For-Change (7p4c), the world's first such journey for transformation set in the backdrop of incredible India. Be ready to experience hundreds of tiny and big travel experiences in India, woven together in the perfect combination and proportion and to be experienced in the perfect environment with the perfect blend of people with unimaginably diverse backgrounds.";
@@ -31,7 +86,7 @@ export default function Home(){
   },1000)
   const canvasRef = useRef();
 
-  return(<>
+  return(<div className="snap-y snap-mandatory pb-20">
   <div className={`fixed h-[100vh] w-[100vw] backdrop-blur-sm ${nav?"block":"hidden"}`} onClick={()=>{setNav(!nav)}}></div>
   <div className={`list-none bg-[#F1EDEB] fixed w-full h-full flex ${nav!=null?nav?"navin":"navout":"hidden"} xl:pl-20 pl-6 flex-col justify-center gap-5 text-7xl`} style={serif.style}>
       <li className={`${nav!=null?nav?"first":"opacity-0 transition":"hidden"}`}>Index</li>
@@ -52,13 +107,15 @@ export default function Home(){
   </div>
   <div className={`pt-20 px-5 text-white ${font.className} xl:ml-10 xl:pt-40 h-[80vh]`}>
   <h1 className="mt-10 text-7xl">7 Pistons for change</h1>
-  <h1 className="mt-5 xl:w-[50%]">{para}</h1>
-  <img src="dna.png" alt="" className="xl:h-60 floating xl:right-20 rotate-45 xl:top-52 absolute -z-30 h-40 top-72 blur-sm xl:blur-0" />
+  <h1 className="mt-5 xl:w-[50%] pointer-events-none absolute -z-20">{para}</h1>
+  <div className="xl:right-10 absolute -z-30 h-[700px] xl:-top-[70px] xl:z-40 p-20 w-[500px] -top-[40px] -right-[50px] hidden xl:block">
+  
+  </div>
   </div>
   <div className={`text-white ${serif.className} px-5 xl:ml-10`}>
   <h1 className={`text-sm image-bg`}>See below how 7p4c with its chemistry of perfection can leave you with a newborn vision, impact and wisdom to lead life.</h1>
   </div>
-  <div className="h-[100vh] w-full absolute -z-10 py-32 xl:py-0">
+  <div className="h-[100vh] w-full absolute -z-10 py-32 xl:py-0 snap-start">
     <Canvas camera={{position:[0,0,20]}} className="cursor-grab w-full h-full" ref={canvasRef}>
       <Sphere/>
       <OrbitControls enablePan={false} enableZoom={false}/>
@@ -159,8 +216,21 @@ xmlns="http://www.w3.org/2000/svg"
 </svg>
 </button>
     </div>
+    <div className="flex pb-10 overflow-hidden scroller">
+     {data.map((items,index)=>{
+      return(
+        <div className="flex-shrink-0 xl:h-[400px] xl:w-[350px] h-[300px] w-[250px] mt-20 xl:ml-10 ml-5 rounded-xl bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border-gray-100 px-3 py-2 flex flex-col text-white gap-3 overflow-y-scroll hey">
+        <img src={items.img} className="rounded-xl w-full h-48 object-cover" alt="" />
+        <h1 className={`${font.className} text-2xl`}>{items.heading}</h1>
+        <h1 key={index}>{items.body}</h1>
+      </div>
+      )
+     })}
+    </div>
+    <button className="p-5 bg-black text-white right-0 absolute -mt-[100px] opacity-30 hover:opacity-100 transition-all" onClick={()=>{clickhandler(true)}}>{">"}</button>
+    <button className="p-5 bg-black text-white left-0 absolute -mt-[100px] opacity-30 hover:opacity-100 transition-all" onClick={()=>{clickhandler(false)}}>{"<"}</button>
   </div>
-  </>)
+  </div>)
 }
 function Sphere(){
   const router = useRouter();

@@ -2,9 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 body{
-  background: linear-gradient(109.6deg, rgb(62, 161, 219) 11.2%, rgb(93, 52, 236) 100.2%);
+  background: #3C3B3F;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #605C3C, #3C3B3F);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #605C3C, #3C3B3F); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  
   background-attachment: fixed;
   background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 @keyframes navin {
     0%{
@@ -133,8 +140,11 @@ body{
     color: transparent;
     -webkit-background-clip: text;
   }
-  body::-webkit-scrollbar {
+  *::-webkit-scrollbar {
     display: none;
+  }
+  .scroller::-webkit-scrollbar{
+    display: auto;
   }
   
   /* From Uiverse.io by Pradeepsaranbishnoi */ 
@@ -289,3 +299,19 @@ body{
       transform: rotate(50deg) scale(1);
     }
   }
+@keyframes swipetoleft{
+  from{
+    transform: translateX(390px);
+  }
+}
+@keyframes swipetoright{
+  from{
+    transform: translateX(-390px);
+  }
+}
+.that{
+  animation:swipetoleft 1s ease-in-out;
+}
+.this{
+  animation:swipetoright 1s ease-in-out;
+}
