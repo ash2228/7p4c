@@ -153,7 +153,7 @@ const images = [
   },1000)
   const canvasRef = useRef();
 
-  return(<div className="pb-20">
+  return(<>
   <div className={`fixed h-[100vh] w-[100vw] backdrop-blur-sm ${nav?"block":"hidden"}`} onClick={()=>{setNav(!nav)}}></div>
   <div className={`list-none bg-[#F1EDEB] fixed w-full h-full flex ${nav!=null?nav?"navin":"navout":"hidden"} xl:pl-20 pl-6 flex-col justify-center gap-5 text-7xl`} style={serif.style}>
       <li className={`${nav!=null?nav?"first":"opacity-0 transition":"hidden"}`}>Index</li>
@@ -173,8 +173,8 @@ const images = [
     </div>
   </div>
   <div className={`pt-20 px-5 text-white ${font.className} xl:ml-10 xl:pt-40 h-[100vh]`}>
-    <img src="hill.png" alt="" className={`absolute -top-20 left-0 right-0 w-[100vw] h-[100vh] object-cover ${!nav?"z-10":"-z-20"} mountain`} />
-  <h1 className="mt-20 text-7xl text-center up upp">7 Pistons for change</h1>
+    <img src="hill.png" alt="" className={`absolute -top-20 left-0 right-0 w-[100vw] h-[100vh] object-cover -z-20 mountain`} />
+  <h1 className="mt-20 text-7xl text-center up upp absolute -z-30">7 Pistons for change</h1>
   </div>
   <div className={`text-white ${serif.className} px-5 xl:ml-10`}>
   <h1 className={`text-sm image-bg`}>See below how 7p4c with its chemistry of perfection can leave you with a newborn vision, impact and wisdom to lead life.</h1>
@@ -327,7 +327,7 @@ xmlns="http://www.w3.org/2000/svg"
   </div>
 }
   </div>
-  </div>)
+  </>)
 }
 function Sphere(){
   const router = useRouter();
