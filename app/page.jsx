@@ -30,7 +30,7 @@ const ref6 = useRef();
 const ref7 = useRef();
 const images = [
   {
-    data:"/gate.jpg",
+    data:"/gate.png",
     ref:ref1
   },
   {
@@ -296,8 +296,8 @@ xmlns="http://www.w3.org/2000/svg"
   <h1 className="absolute ml-10 mt-[400px] one text-white cursor-pointer select-none hover:opacity-50 transition" onClick={()=>{window.scrollBy(0,-1);ref5.current.scrollIntoView({behavior:"smooth"})}}>Varanasi</h1>
   <h1 className="absolute ml-10 mt-[450px] one text-white cursor-pointer select-none hover:opacity-50 transition" onClick={()=>{window.scrollBy(0,-1);ref6.current.scrollIntoView({behavior:"smooth"})}}>Lucknow</h1>
   <h1 className="absolute ml-10 mt-[500px] one text-white cursor-pointer select-none hover:opacity-50 transition" onClick={()=>{window.scrollBy(0,-1);ref7.current.scrollIntoView({behavior:"smooth"})}}>Agra</h1>
-  <h1 className="text-white text-4xl absolute left-5 xl:mt-[10%] mt-[155%]">City</h1>
-  <h1 className="text-white text-sm absolute xl:mt-[14%] italic mt-[170%] ml-5 mr-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur hic neque assumenda veritatis in? Doloribus in similique culpa modi cumque sit dolore, nesciunt hic unde ullam, error atque iure ut.</h1>
+  <h1 className="text-white text-4xl absolute left-5 xl:mt-[10%] mt-[155%] xl:text-center xl:right-0 xl:w-full">City</h1>
+  <h1 className="text-white text-sm absolute xl:mt-[14%] italic mt-[170%] ml-5 mr-5 xl:text-center xl:right-0 xl:w-full">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur hic neque assumenda veritatis in? Doloribus in similique culpa modi cumque sit dolore, nesciunt hic unde ullam, error atque iure ut.</h1>
 </div>
   <Page/>
   </div>
