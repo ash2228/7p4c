@@ -13,8 +13,8 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
       <link rel="preload" href="chand.jpg" as="image" />
-      <link rel="preload" href="gate.jpg" as="image" />
-      <link rel="preload" href="jaipur.jpg" as="image" />
+      <link rel="preload" href="gate.png" as="image" />
+      <link rel="preload" href="jaipur.png" as="image" />
       <link rel="preload" href="luck.jpg" as="image" />
       <link rel="preload" href="taj.jpg" as="image" />
       <link rel="preload" href="rishi.jpg" as="image" />

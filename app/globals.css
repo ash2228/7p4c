@@ -325,3 +325,18 @@ body{
   margin-left: -1.8rem;
   background-color: yellow;
 }
+@keyframes down {
+  to{
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+.down{
+  animation: 1s down forwards ease-in-out;
+}
+.back{
+  background-image: url("https://cdn.pixabay.com/photo/2017/12/20/14/53/clouds-3030063_1280.jpg");
+  background-position: 0%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
