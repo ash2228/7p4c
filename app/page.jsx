@@ -18,7 +18,7 @@ export default function Home(){
   useEffect(()=>{
     if (typeof window !== "undefined") {
       setInnerW(window.innerWidth);
-      setInnerW(window.innerHeight);
+      setInnerH(window.innerHeight);
     }
   },[])
   const ref1 = useRef();
@@ -289,13 +289,13 @@ xmlns="http://www.w3.org/2000/svg"
   ))}
   <h1 className="absolute text-white ml-5 mt-20 text-4xl">7 Pistons or Pitstops of India</h1>
   <hr className="border w-0 h-[45vh] absolute ml-5 mt-52" />
-  <h1 className="absolute ml-10 mt-[200px] one text-white cursor-pointer select-none hover:opacity-50 transition" onClick={()=>{ref1.current.scrollIntoView({behavior:"smooth"})}}>Delhi,Gurugram,Vrindavan,Mathura</h1>
-  <h1 className="absolute ml-10 mt-[250px] one text-white cursor-pointer select-none hover:opacity-50 transition" onClick={()=>{ref2.current.scrollIntoView({behavior:"smooth"})}}>Jaipur</h1>
-  <h1 className="absolute ml-10 mt-[300px] one text-white cursor-pointer select-none hover:opacity-50 transition" onClick={()=>{ref3.current.scrollIntoView({behavior:"smooth"})}}>Rishikesh</h1>
-  <h1 className="absolute ml-10 mt-[350px] one text-white cursor-pointer select-none hover:opacity-50 transition" onClick={()=>{ref4.current.scrollIntoView({behavior:"smooth"})}}>Chandigarh</h1>
-  <h1 className="absolute ml-10 mt-[400px] one text-white cursor-pointer select-none hover:opacity-50 transition" onClick={()=>{ref5.current.scrollIntoView({behavior:"smooth"})}}>Varanasi</h1>
-  <h1 className="absolute ml-10 mt-[450px] one text-white cursor-pointer select-none hover:opacity-50 transition" onClick={()=>{ref6.current.scrollIntoView({behavior:"smooth"})}}>Lucknow</h1>
-  <h1 className="absolute ml-10 mt-[500px] one text-white cursor-pointer select-none hover:opacity-50 transition" onClick={()=>{ref7.current.scrollIntoView({behavior:"smooth"})}}>Agra</h1>
+  <h1 className="absolute ml-10 mt-[200px] one text-white cursor-pointer select-none hover:opacity-50 transition" onClick={()=>{window.scrollBy(0,-1);ref1.current.scrollIntoView({behavior:"smooth"})}}>Delhi,Gurugram,Vrindavan,Mathura</h1>
+  <h1 className="absolute ml-10 mt-[250px] one text-white cursor-pointer select-none hover:opacity-50 transition" onClick={()=>{window.scrollBy(0,-1);ref2.current.scrollIntoView({behavior:"smooth"})}}>Jaipur</h1>
+  <h1 className="absolute ml-10 mt-[300px] one text-white cursor-pointer select-none hover:opacity-50 transition" onClick={()=>{window.scrollBy(0,-1);ref3.current.scrollIntoView({behavior:"smooth"})}}>Rishikesh</h1>
+  <h1 className="absolute ml-10 mt-[350px] one text-white cursor-pointer select-none hover:opacity-50 transition" onClick={()=>{window.scrollBy(0,-1);ref4.current.scrollIntoView({behavior:"smooth"})}}>Chandigarh</h1>
+  <h1 className="absolute ml-10 mt-[400px] one text-white cursor-pointer select-none hover:opacity-50 transition" onClick={()=>{window.scrollBy(0,-1);ref5.current.scrollIntoView({behavior:"smooth"})}}>Varanasi</h1>
+  <h1 className="absolute ml-10 mt-[450px] one text-white cursor-pointer select-none hover:opacity-50 transition" onClick={()=>{window.scrollBy(0,-1);ref6.current.scrollIntoView({behavior:"smooth"})}}>Lucknow</h1>
+  <h1 className="absolute ml-10 mt-[500px] one text-white cursor-pointer select-none hover:opacity-50 transition" onClick={()=>{window.scrollBy(0,-1);ref7.current.scrollIntoView({behavior:"smooth"})}}>Agra</h1>
   <h1 className="text-white text-4xl absolute left-0 right-0 text-center xl:mt-[10%] mt-[100%]">City</h1>
   <h1 className="text-white text-sm absolute text-center xl:mt-[14%] italic mt-[120%] w-[50%] ml-[25%]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur hic neque assumenda veritatis in? Doloribus in similique culpa modi cumque sit dolore, nesciunt hic unde ullam, error atque iure ut.</h1>
 </div>
