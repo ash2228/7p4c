@@ -2,10 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 body{
-  background: #3C3B3F;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #605C3C, #3C3B3F);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #605C3C, #3C3B3F); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  
+background: #1488CC;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #2B32B2, #1488CC);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #2B32B2, #1488CC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
   background-attachment: fixed;
   background-repeat: no-repeat;
   -webkit-background-size: cover;
@@ -339,4 +339,21 @@ body{
   background-position: 0%;
   background-size: cover;
   background-repeat: no-repeat;
+}
+@keyframes up{
+  from{
+    transform: translateY(10vh);
+  }
+}
+@keyframes down{
+  from{
+    transform: translateY(100vh);
+  }
+}
+.up{
+  animation: up 2.5s linear;
+}
+.mountain{
+  animation: down;
+  animation-timeline: view();
 }

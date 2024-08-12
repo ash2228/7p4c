@@ -13,6 +13,9 @@ const serif = Roboto_Serif({weight:"400",subsets:["latin"]});
 let trans = false;
 
 export default function Home(){
+  const [city,setCity] = useState("Delhi");
+  const [onboard,setOnBoard] = useState(false);
+  const [body,setBody] = useState("");
   const [innerWidth,setInnerW] = useState(0);
   const [innerHeight,setInnerH] = useState(0);
   useEffect(()=>{
@@ -31,31 +34,38 @@ const ref7 = useRef();
 const images = [
   {
     data:"/gate.jpg",
-    ref:ref1
+    ref:ref1,
+    id:0,
   },
   {
     data:"/jaipur.jpg",
     ref:ref2
+    ,id:2,
   },
   {
     data:"/rishi.jpg",
     ref:ref3
+    ,id:3,
   },
   {
     data:"/chand.jpg",
     ref:ref4
+    ,id:4,
   },
   {
     data:"/vara.jpg",
     ref:ref5
+    ,id:5,
   },
   {
     data:"/luck.jpg",
     ref:ref6
+    ,id:6,
   },
   {
     data:"/taj.jpg",
     ref:ref7
+    ,id:7,
   },
 ]
   useEffect(()=>{
@@ -86,6 +96,14 @@ const images = [
       }
     }
   }
+  const scrollerRef = useRef();
+  useEffect(()=>{
+    if(scrollerRef.current){
+     scrollerRef.current.addEventListener("scroll",(e)=>{
+      console.log(e.scrollBy)
+     })
+    }
+  },[scrollerRef])
   const data = [
     {
       img:"https://e1.pxfuel.com/desktop-wallpaper/948/916/desktop-wallpaper-india-in-20-beautiful-places-to-graph-indian-tourism.jpg",
@@ -129,12 +147,13 @@ const images = [
   useEffect(()=>{
     if(document!==undefined){
       document.body.style.overflow = "auto"
+      document.body.style.overflowX = "hidden"
     }
     trans=false
   },1000)
   const canvasRef = useRef();
 
-  return(<div className="snap-y snap-mandatory pb-20">
+  return(<div className="pb-20">
   <div className={`fixed h-[100vh] w-[100vw] backdrop-blur-sm ${nav?"block":"hidden"}`} onClick={()=>{setNav(!nav)}}></div>
   <div className={`list-none bg-[#F1EDEB] fixed w-full h-full flex ${nav!=null?nav?"navin":"navout":"hidden"} xl:pl-20 pl-6 flex-col justify-center gap-5 text-7xl`} style={serif.style}>
       <li className={`${nav!=null?nav?"first":"opacity-0 transition":"hidden"}`}>Index</li>
@@ -146,21 +165,21 @@ const images = [
     <div className="flex flex-col">
     <span className={`mx-auto text-2xl ${nav&&"text-black xl:text-white"}`}>7P4C</span>
     </div>
-    <div className={`select-none fixed text-3xl right-5 top-3 flex rounded-full h-[40px] w-[40px] justify-center hover:rotate-180 transition-all z-20 ${nav?"text-white bg-black":"bg-white text-black"}`} onClick={()=>{setNav(!nav)}}>
+    <div className={`select-none fixed text-3xl right-5 top-3 flex rounded-full h-[40px] w-[40px] justify-center hover:rotate-180 transition-all z-20 ${nav?"text-white bg-black":"bg-white text-black"} z-[1000]`} onClick={()=>{setNav(!nav)}}>
       <span className="-mt-[6px]">.</span>
       <span className="-mt-[6px]">.</span>
     </div>
     <div>
     </div>
   </div>
-  <div className={`pt-20 px-5 text-white ${font.className} xl:ml-10 xl:pt-40 h-[80vh]`}>
-  <h1 className="mt-10 text-7xl">7 Pistons for change</h1>
-  <h1 className="mt-5 xl:w-[50%] pointer-events-none absolute -z-20">{para}</h1>
+  <div className={`pt-20 px-5 text-white ${font.className} xl:ml-10 xl:pt-40 h-[100vh]`}>
+    <img src="hill.png" alt="" className="absolute -top-20 left-0 right-0 w-[100vw] h-[100vh] object-cover z-10 mountain" />
+  <h1 className="mt-20 text-7xl text-center up upp">7 Pistons for change</h1>
   </div>
   <div className={`text-white ${serif.className} px-5 xl:ml-10`}>
   <h1 className={`text-sm image-bg`}>See below how 7p4c with its chemistry of perfection can leave you with a newborn vision, impact and wisdom to lead life.</h1>
   </div>
-  <div className="h-[100vh] w-full absolute -z-10 py-32 xl:py-0 snap-start">
+  <div className="h-[100vh] w-full absolute -z-10 py-32 xl:py-0 snap-start bg-blue-950">
     <Canvas camera={{position:[0,0,20]}} className="cursor-grab w-full h-full" ref={canvasRef}>
       <Sphere/>
       <OrbitControls enablePan={false} enableZoom={false}/>
@@ -274,7 +293,7 @@ xmlns="http://www.w3.org/2000/svg"
     </div>
     <button className="p-5 bg-black text-white right-0 absolute -mt-[100px] opacity-30 hover:opacity-100 transition-all" onClick={()=>{clickhandler(true)}}>{">"}</button>
     <button className="p-5 bg-black text-white left-0 absolute -mt-[100px] opacity-30 hover:opacity-100 transition-all" onClick={()=>{clickhandler(false)}}>{"<"}</button>
-    <div className="h-[100vh] w-full flex flex-col overflow-hidden" style={font.style}>
+    <div className="h-[100vh] w-full flex flex-col overflow-y-scroll snap-y snap-mandatory" ref={scrollerRef} style={font.style}>
   {images.map((item, index) => (
     <Image
     width={innerWidth}
@@ -283,23 +302,30 @@ xmlns="http://www.w3.org/2000/svg"
       src={item.data} 
       alt="" 
       key={index} 
-      className="object-cover h-full w-full flex-1 brightness-50" 
-      style={{ minHeight: '100%', minWidth: '100%' }} 
+      className="object-cover h-full w-full flex-1 snap-center" 
+      style={{ minHeight: '100%', minWidth: '100%'}} 
+      id={item.id}
     />
   ))}
   <h1 className="absolute text-white ml-5 mt-20 text-4xl">7 Pistons or Pitstops of India</h1>
   <hr className="border w-0 h-[45vh] absolute ml-5 mt-52" />
-  <h1 className="absolute ml-10 mt-[200px] one text-white cursor-pointer select-none hover:opacity-50 transition" onClick={()=>{window.scrollBy(0,-1);ref1.current.scrollIntoView({behavior:"smooth"})}}>Delhi,Gurugram,Vrindavan,Mathura</h1>
-  <h1 className="absolute ml-10 mt-[250px] one text-white cursor-pointer select-none hover:opacity-50 transition" onClick={()=>{window.scrollBy(0,-1);ref2.current.scrollIntoView({behavior:"smooth"})}}>Jaipur</h1>
-  <h1 className="absolute ml-10 mt-[300px] one text-white cursor-pointer select-none hover:opacity-50 transition" onClick={()=>{window.scrollBy(0,-1);ref3.current.scrollIntoView({behavior:"smooth"})}}>Rishikesh</h1>
-  <h1 className="absolute ml-10 mt-[350px] one text-white cursor-pointer select-none hover:opacity-50 transition" onClick={()=>{window.scrollBy(0,-1);ref4.current.scrollIntoView({behavior:"smooth"})}}>Chandigarh</h1>
-  <h1 className="absolute ml-10 mt-[400px] one text-white cursor-pointer select-none hover:opacity-50 transition" onClick={()=>{window.scrollBy(0,-1);ref5.current.scrollIntoView({behavior:"smooth"})}}>Varanasi</h1>
-  <h1 className="absolute ml-10 mt-[450px] one text-white cursor-pointer select-none hover:opacity-50 transition" onClick={()=>{window.scrollBy(0,-1);ref6.current.scrollIntoView({behavior:"smooth"})}}>Lucknow</h1>
-  <h1 className="absolute ml-10 mt-[500px] one text-white cursor-pointer select-none hover:opacity-50 transition" onClick={()=>{window.scrollBy(0,-1);ref7.current.scrollIntoView({behavior:"smooth"})}}>Agra</h1>
-  <h1 className="text-white text-4xl absolute left-5 xl:mt-[10%] mt-[155%] xl:w-full xl:text-center">City</h1>
-  <h1 className="text-white text-sm absolute xl:mt-[14%] italic mt-[170%] ml-5 mr-5 xl:w-full xl:text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur hic neque assumenda veritatis in? Doloribus in similique culpa modi cumque sit dolore, nesciunt hic unde ullam, error atque iure ut.</h1>
+  <h1 className="absolute ml-10 mt-[200px] one text-white cursor-pointer select-none hover:opacity-50 transition" onClick={()=>{window.scrollBy(0,-1);ref1.current.scrollIntoView({behavior:"smooth"});setCity("Delhi");setBody("")}}>Delhi,Gurugram,Vrindavan,Mathura</h1>
+  <h1 className="absolute ml-10 mt-[250px] one text-white cursor-pointer select-none hover:opacity-50 transition" onClick={()=>{window.scrollBy(0,-1);ref2.current.scrollIntoView({behavior:"smooth"});setCity("Jaipur");setBody("")}}>Jaipur</h1>
+  <h1 className="absolute ml-10 mt-[300px] one text-white cursor-pointer select-none hover:opacity-50 transition" onClick={()=>{window.scrollBy(0,-1);ref3.current.scrollIntoView({behavior:"smooth"});setCity("Rishikesh");setBody("")}}>Rishikesh</h1>
+  <h1 className="absolute ml-10 mt-[350px] one text-white cursor-pointer select-none hover:opacity-50 transition" onClick={()=>{window.scrollBy(0,-1);ref4.current.scrollIntoView({behavior:"smooth"});setCity("Chandigarh");setBody("")}}>Chandigarh</h1>
+  <h1 className="absolute ml-10 mt-[400px] one text-white cursor-pointer select-none hover:opacity-50 transition" onClick={()=>{window.scrollBy(0,-1);ref5.current.scrollIntoView({behavior:"smooth"});setCity("Varanasi");setBody("")}}>Varanasi</h1>
+  <h1 className="absolute ml-10 mt-[450px] one text-white cursor-pointer select-none hover:opacity-50 transition" onClick={()=>{window.scrollBy(0,-1);ref6.current.scrollIntoView({behavior:"smooth"});setCity("Lucknow");setBody("")}}>Lucknow</h1>
+  <h1 className="absolute ml-10 mt-[500px] one text-white cursor-pointer select-none hover:opacity-50 transition" onClick={()=>{window.scrollBy(0,-1);ref7.current.scrollIntoView({behavior:"smooth"});setCity("Agra");setBody("")}}>Agra</h1>
+  <h1 className="text-white text-4xl absolute left-5 xl:mt-[10%] mt-[155%] xl:w-full xl:text-center">{city}</h1>
+  <h1 className="text-white text-sm absolute xl:mt-[14%] italic mt-[170%] ml-5 mr-5 xl:w-full xl:text-center">{body}</h1>
 </div>
-  <Page/>
+  {onboard?<Page/>:
+  <div className="flex w-full items-center justify-center py-40">
+    <button className="group group-hover:before:duration-500 group-hover:after:duration-500 after:duration-500 hover:border-rose-300 hover:before:[box-shadow:_20px_20px_20px_30px_#a21caf] duration-500 before:duration-500 hover:duration-500 underline underline-offset-2 hover:after:-right-8 hover:before:right-12 hover:before:-bottom-8 hover:before:blur hover:underline hover:underline-offset-4  origin-left hover:decoration-2 hover:text-rose-300 relative bg-neutral-800 h-16 w-64 border text-left p-3 text-gray-50 text-base font-bold rounded-lg  overflow-hidden  before:absolute before:w-12 before:h-12 before:content[''] before:right-1 before:top-1 before:z-10 before:bg-violet-500 before:rounded-full before:blur-lg  after:absolute after:z-10 after:w-20 after:h-20 after:content['']  after:bg-rose-300 after:right-8 after:top-3 after:rounded-full after:blur-lg" onClick={()=>{setOnBoard(true)}}>
+  Get Onboard
+</button>
+  </div>
+}
   </div>
   </div>)
 }
