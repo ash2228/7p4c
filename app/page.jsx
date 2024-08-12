@@ -165,7 +165,7 @@ const images = [
     <div className="flex flex-col">
     <span className={`mx-auto text-2xl ${nav&&"text-black xl:text-white"}`}>7P4C</span>
     </div>
-    <div className={`select-none fixed text-3xl right-5 top-3 flex rounded-full h-[40px] w-[40px] justify-center hover:rotate-180 transition-all z-20 ${nav?"text-white bg-black":"bg-white text-black"} z-[1000]`} onClick={()=>{setNav(!nav)}}>
+    <div className={`select-none fixed text-3xl right-5 top-3 flex rounded-full h-[40px] w-[40px] justify-center hover:rotate-180 transition-all z-40 ${nav?"text-white bg-black":"bg-white text-black"}`} onClick={()=>{setNav(!nav)}}>
       <span className="-mt-[6px]">.</span>
       <span className="-mt-[6px]">.</span>
     </div>
@@ -173,7 +173,7 @@ const images = [
     </div>
   </div>
   <div className={`pt-20 px-5 text-white ${font.className} xl:ml-10 xl:pt-40 h-[100vh]`}>
-    <img src="hill.png" alt="" className="absolute -top-20 left-0 right-0 w-[100vw] h-[100vh] object-cover z-10 mountain" />
+    <img src="hill.png" alt="" className={`absolute -top-20 left-0 right-0 w-[100vw] h-[100vh] object-cover ${!nav?"z-10":"-z-20"} mountain`} />
   <h1 className="mt-20 text-7xl text-center up upp">7 Pistons for change</h1>
   </div>
   <div className={`text-white ${serif.className} px-5 xl:ml-10`}>
